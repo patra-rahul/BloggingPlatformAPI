@@ -8,4 +8,9 @@ const blogRouter = Router();
  */
 blogRouter.post('/posts', controller.createBlog);
 
+/**
+ * PUT /posts/:id
+ */
+blogRouter.put('/posts/:id', controller.updateBlog);
+
 export default blogRouter;

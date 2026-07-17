@@ -31,6 +31,30 @@ export async function createBlog(req, res) {
     category: blogCreated.category,
     tags: blogCreated.tags,
     createdAt: blogCreated.createdAt,
-    updatedAt: blogCreated.updatedAt
+    updatedAt: blogCreated.updatedAt,
   });
+}
+
+export async function updateBlog(req, res) {
+  const { title, content, category, tags } = req.body;
+  const updatedBlog = await blogModel.findOneAndUpdate(
+    { blogId: req.params.id },
+    {
+      title,
+      content,
+      category,
+      tags,
+    },
+    {
+      new: true,
+      runValidators: true,
+    },
+  );
+
+  if (!updatedBlog) {
+    return res.status(404).json({
+      msg: "Blog not found to update",
+    });
+  }
+  res.status(200).json({ updatedBlog });
 }
