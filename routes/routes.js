@@ -13,4 +13,14 @@ blogRouter.post('/posts', controller.createBlog);
  */
 blogRouter.put('/posts/:id', controller.updateBlog);
 
+/**
+ * DELETE /posts/:id
+ */
+blogRouter.delete('/posts/:id', controller.deleteBlog);
+
+/**
+ * GET /posts/:id
+ */
+blogRouter.get("/posts/:id", controller.getBlog);
+
 export default blogRouter;

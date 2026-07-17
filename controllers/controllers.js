@@ -58,3 +58,29 @@ export async function updateBlog(req, res) {
   }
   res.status(200).json({ updatedBlog });
 }
+
+export async function deleteBlog(req, res) {
+  const deletedBlog = await blogModel.findOneAndDelete({
+    blogId: req.params.id,
+  });
+
+  if (!deleteBlog) {
+    return res.status(404);
+  }
+
+  res.status(204);
+}
+
+export async function getBlog(req, res) {
+  const recievedBlog = await blogModel.findOne({ blogId: req.params.id });
+
+  if(!recievedBlog){
+    return res.status(404).json({
+        msg: "Blog not found"
+    });
+  }
+
+  res.status(200).json({
+    recievedBlog
+  })
+}
